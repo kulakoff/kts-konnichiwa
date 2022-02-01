@@ -1,0 +1,146 @@
+@import "~antd/dist/antd.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;0,900;1,300&display=swap");
+:root {
+  --black: #000000;
+  --borderRadius: 5px;
+}
+
+.container {
+  margin: auto;
+  max-width: 397px;
+  height: 800px;
+  border: 1px solid black;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  width: 357px;
+}
+.searchBar__input {
+  width: 295px;
+  color: #7e7e7e;
+  border: 1px solid #d9d9d9;
+  border-radius: var(--borderRadius);
+}
+.searchBar__input:focus {
+  border: #ff5555 1px solid;
+}
+
+.searchBar__button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 50px;
+  height: 50px;
+  background-image: url(./../../assets/img/searchButton.svg);
+}
+
+.reposList {
+}
+
+.item {
+  color: #7e7e7e;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 357px;
+  height: 104px;
+  border: 1px solid #d9d9d9;
+  border-radius: var(--borderRadius);
+}
+
+.item__avatar {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #d9d9d9;
+}
+.item__img {
+}
+.item__defaltBackground {
+  /* position:absolute; */
+  width: 80px;
+  height: 80px;
+  left: 12px;
+  top: calc(50% - 80px / 2);
+  background: #ff5555;
+  border-radius: 40px;
+}
+.item__repoFirsLetter {
+  /* position: absolute; */
+  width: 80px;
+  height: 80px;
+  left: 12px;
+  top: 12px;
+
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 40px;
+line-height: 47px;
+display: flex;
+align-items: center;
+text-align: center;
+
+/* background */
+
+color: #FFFFFF;
+}
+
+.item__content {
+  display: flex;
+  flex-direction: column;
+
+  width: 241px;
+  height: 59px;
+  /* border: 1px solid #d9d9d9; */
+}
+.item__orgName {
+  margin: 4px 4px 0px 0px;
+  height: 16px;
+  left: 104px;
+  right: 12px;
+  top: calc(50% - 16px / 2 + 2px);
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #7e7e7e;
+}
+.item__repoName {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--black);
+}
+.item__info {
+  display: flex;
+}
+.item__stars {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid #d9d9d9; */
+}
+.item__starImg {
+  width: 13px;
+  height: 13px;
+  background-image: url(./../../assets/img/star.svg);
+}
+.item__starsCount {
+  margin-left: 4px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #7e7e7e;
+}
+.item__updated {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #7e7e7e;
+}
