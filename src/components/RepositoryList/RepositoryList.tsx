@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import classes from "./RepositoryList.module.css"
-import searchButton from "./../../assets/img/searchButton.svg"
 
 
 const RepositoryList: FC = () => {
@@ -10,7 +9,9 @@ const RepositoryList: FC = () => {
         <input type="text"
           className={classes.searchBar__input}
           placeholder="Введите название организации" />
-        <button className={classes.searchBar__button}></button>
+        <button className={classes.searchBar__button}>
+          <div className={classes.searchBar__button__img}></div>
+        </button>
       </div>
       <div className={classes.reposList}>
         <div className={classes.item}>

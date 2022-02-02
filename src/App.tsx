@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import RepositoryList from "./components/repositoryList/";
+import RepositoryList from "./components/RepositoryList";
 
 const App: FC = () => (
-  <><RepositoryList /></>
+  <>
+  <RepositoryList />
+  </>
 );
 
 export default App;
