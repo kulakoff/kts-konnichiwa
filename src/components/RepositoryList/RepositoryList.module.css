@@ -45,7 +45,7 @@
 .searchBar__button:hover {
   opacity: 0.7;
 }
-.searchBar__button__img {
+.searchBar__img {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -80,17 +80,17 @@
   display: pointer;
 }
 
-.item__avatar {
+.itemAvatar {
   width: 80px;
   height: 80px;
 }
-.item__img {
+.itemAvatar__img {
   display: none;
   width: 80px;
   height: 80px;
   background-image: url(./../../assets/img/avatar.png);
 }
-.item__defaltBackground {
+.itemAvatar__defaltBackground {
   /* display: none; */
   width: 80px;
   height: 80px;
@@ -99,7 +99,7 @@
   background: #ff5555;
   border-radius: 40px;
 }
-.item__repoFirsLetter {
+.itemAvatar__repoFirsLetter {
   display: table-cell;
   vertical-align: middle;
   width: 80px;
@@ -117,7 +117,7 @@
   color: #ffffff;
 }
 
-.item__content {
+.itemDesrcription {
   display: flex;
   flex-direction: column;
 
@@ -125,7 +125,7 @@
   height: 59px;
   /* border: 1px solid #d9d9d9; */
 }
-.item__orgName {
+.itemDesrcription__orgName {
   margin: 4px 4px 0px 0px;
   height: 16px;
   left: 104px;
@@ -139,7 +139,7 @@
   line-height: 16px;
   color: #7e7e7e;
 }
-.item__repoName {
+.itemDesrcription__repoName {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -147,26 +147,26 @@
   line-height: 19px;
   color: var(--black);
 }
-.item__info {
+.itemDesrcription__info {
   display: flex;
 }
-.item__stars {
+.itemDesrcription__stars {
   display: flex;
   justify-content: space-between;
   /* border: 1px solid #d9d9d9; */
 }
-.item__starImg {
+.itemDesrcription__starImg {
   width: 13px;
   height: 13px;
   background-image: url(./../../assets/img/star.svg);
 }
-.item__starsCount {
+.itemDesrcription__starsCount {
   margin-left: 4px;
   font-size: 14px;
   line-height: 16px;
   color: #7e7e7e;
 }
-.item__updated {
+.itemDesrcription__updated {
   margin-left: 20px;
   font-size: 14px;
   line-height: 16px;
