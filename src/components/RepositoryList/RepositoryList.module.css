@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;0,900;1,300&display=swap");
 :root {
   --black: #000000;
-  ---white: #ffff;
+  --white: #ffff;
   --pink: #ff5555;
+  --grey00:#d9d9d9;
+  --grey01:#7e7e7e;
   --borderRadius: 5px;
 }
 
@@ -24,12 +26,14 @@
   height: 50px;
 }
 .searchBar__input {
+  text-indent: 10px;
   width: 295px;
-  color: #7e7e7e;
-  border: 1px solid #d9d9d9;
+  color: var(--grey01);
+  border: 1px solid var(--grey00);
   border-radius: var(--borderRadius);
 }
 .searchBar__input:focus {
+  outline: none !important;
   border: var(--pink) 1px solid;
 }
 
@@ -66,14 +70,14 @@
 
 .item {
   cursor: pointer;
-  color: #7e7e7e;
+  color: var(--grey01);
   margin: 10px auto;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 357px;
   height: 104px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--grey00);
   border-radius: var(--borderRadius);
 }
 .item:hover {
@@ -85,7 +89,7 @@
   height: 80px;
 }
 .itemAvatar__img {
-  display: none;
+  /* display: none; */
   width: 80px;
   height: 80px;
   background-image: url(./../../assets/img/avatar.png);
@@ -96,7 +100,7 @@
   height: 80px;
   left: 12px;
   top: calc(50% - 80px / 2);
-  background: #ff5555;
+  background: var(--pink);
   border-radius: 40px;
 }
 .itemAvatar__repoFirsLetter {
@@ -123,7 +127,6 @@
 
   width: 241px;
   height: 59px;
-  /* border: 1px solid #d9d9d9; */
 }
 .itemDesrcription__orgName {
   margin: 4px 4px 0px 0px;
@@ -137,7 +140,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
-  color: #7e7e7e;
+  color: var(--grey01);
 }
 .itemDesrcription__repoName {
   font-family: Roboto;
@@ -153,7 +156,6 @@
 .itemDesrcription__stars {
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid #d9d9d9; */
 }
 .itemDesrcription__starImg {
   width: 13px;
@@ -164,11 +166,11 @@
   margin-left: 4px;
   font-size: 14px;
   line-height: 16px;
-  color: #7e7e7e;
+  color: var(--grey01);
 }
 .itemDesrcription__updated {
   margin-left: 20px;
   font-size: 14px;
   line-height: 16px;
-  color: #7e7e7e;
+  color: var(--grey01);
 }

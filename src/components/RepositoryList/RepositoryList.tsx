@@ -2,6 +2,53 @@ import { FC } from "react";
 import classes from "./RepositoryList.module.css"
 import RepoItem from "./RepoItem"
 
+const testObj4Render = [
+  {
+    id: 843757,
+    name: "kts-school-frontend-1",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-1",
+      avatar_url: null,
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 2,
+  },
+  {
+    id: 324325,
+    name: "kts-school-frontend-2",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-2",
+      avatar_url: "https://simple-url-avatar.com",
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 2,
+  },
+  {
+    id: 7457856,
+    name: "kts-school-frontend-3",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-3",
+      avatar_url: null,
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 2,
+  },
+  {
+    id: 9843757,
+    name: "kts-school-frontend-4",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-4",
+      avatar_url: null,
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 2,
+  },
+]
+
 
 const RepositoryList: FC = () => {
   return (
@@ -18,11 +65,9 @@ const RepositoryList: FC = () => {
       </div>
 
       <div className={classes.reposList}>
-        <RepoItem />
-        <RepoItem />
-        <RepoItem />
-        <RepoItem />
-        <RepoItem />
+        {testObj4Render.map((item, index) => (
+          <RepoItem key={item.id} id={item.id} name={item.name} owner={{login:item.owner.login, avatar_url:item.owner.avatar_url}}/>
+        ))}
       </div>
     </div>
   )
