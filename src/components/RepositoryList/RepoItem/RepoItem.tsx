@@ -31,7 +31,7 @@ const RepoItem: FC<RepoItemType> = (props:RepoItemType) => {
       </div>
       <div className={classes.itemDesrcription}>
         <span className={classes.itemDesrcription__repoName}>{props.name}</span>
-        <a className={classes.itemDesrcription__orgName}>{props.owner.login}</a>
+        <a className={classes.itemDesrcription__orgName} href="/#">{props.owner.login}</a>
         <div className={classes.itemDesrcription__info}>
           <div className={classes.itemDesrcription__stars}>
             <div className={classes.itemDesrcription__starImg}></div>

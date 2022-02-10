@@ -47,6 +47,50 @@ const testObj4Render = [
     updated_at: "2021-02-02T18:15:15Z",
     stargazers_count: 2,
   },
+  {
+    id: 9843755,
+    name: "kts-school-frontend-5",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-5",
+      avatar_url: null,
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 2,
+  },
+  {
+    id: 9843756,
+    name: "kts-school-frontend-6",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-6",
+      avatar_url: null,
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 42,
+  },
+  {
+    id: 9843777,
+    name: "kts-school-frontend-7",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-7",
+      avatar_url: null,
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 2,
+  },
+  {
+    id: 9843758,
+    name: "kts-school-frontend-8",
+    url: "http://simple.host.com",
+    owner: {
+      login: "ktsstudio-8",
+      avatar_url: null,
+    },
+    updated_at: "2021-02-02T18:15:15Z",
+    stargazers_count: 22,
+  },
 ]
 
 
@@ -57,8 +101,12 @@ const RepositoryList: FC = () => {
         <div className={classes.searchBar}>
           <input type="text"
             className={classes.searchBar__input}
-            placeholder="Введите название организации" />
-          <button className={classes.searchBar__button}>
+            placeholder="Введите название организации" 
+            // disabled
+            />
+          <button className={classes.searchBar__button}
+          //  disabled
+           >
             <div className={classes.searchBar__img}></div>
           </button>
         </div>
