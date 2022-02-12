@@ -6,7 +6,6 @@ import {
   HTTPMethod,
 } from "./types";
 const qs = require("qs");
-// import qs from "qs";
 
 
 export default class ApiStore implements IApiStore {

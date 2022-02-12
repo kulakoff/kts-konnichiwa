@@ -101,12 +101,12 @@ const RepositoryList: FC = () => {
         <div className={classes.searchBar}>
           <input type="text"
             className={classes.searchBar__input}
-            placeholder="Введите название организации" 
-            // disabled
-            />
+            placeholder="Введите название организации"
+          // disabled
+          />
           <button className={classes.searchBar__button}
           //  disabled
-           >
+          >
             <div className={classes.searchBar__img}></div>
           </button>
         </div>
@@ -114,7 +114,7 @@ const RepositoryList: FC = () => {
 
       <div className={classes.reposList}>
         {testObj4Render.map((item, index) => (
-          <RepoItem key={item.id} id={item.id} name={item.name} owner={{login:item.owner.login, avatar_url:item.owner.avatar_url}}/>
+          <RepoItem key={item.id} id={item.id} name={item.name} owner={{ login: item.owner.login, avatar_url: item.owner.avatar_url }} />
         ))}
       </div>
     </div>

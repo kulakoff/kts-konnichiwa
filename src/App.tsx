@@ -1,6 +1,6 @@
 import { FC } from "react";
 import "./App.css";
-import RepositoryList from "./components/RepositoryList";
+import RepositoryList from "@components/RepositoryList";
 
 const App: FC = () => (
   <>
