@@ -3,20 +3,18 @@
   --black: #000000;
   --white: #ffff;
   --pink: #ff5555;
-  --grey00:#d9d9d9;
-  --grey01:#7e7e7e;
+  --grey00: #d9d9d9;
+  --grey01: #7e7e7e;
   --borderRadius: 5px;
 }
 
 .container {
   margin: auto;
   max-width: 397px;
-  height: 800px;
-  /* border: 1px solid black; */
 }
 
-.searchBar__container{
-  display:grid
+.searchBar__container {
+  display: grid;
 }
 .searchBar {
   display: flex;
@@ -36,10 +34,6 @@
   outline: none !important;
   border: var(--pink) 1px solid;
 }
-.searchBar__input:disabled{
-  
-}
-
 .searchBar__button {
   position: relative;
   cursor: pointer;
@@ -52,7 +46,7 @@
 .searchBar__button:hover {
   opacity: 0.7;
 }
-.searchBar__button:disabled{
+.searchBar__button:disabled {
   background: var(--grey00);
 }
 .searchBar__img {
@@ -70,7 +64,7 @@
 }
 
 .reposList {
-  display:grid;
+  display: grid;
   grid-column: 1fr;
 }
 
@@ -124,7 +118,7 @@
   line-height: 47px;
   align-items: center;
   text-align: center;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .itemDesrcription {
