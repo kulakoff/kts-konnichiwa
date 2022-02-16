@@ -3,9 +3,7 @@ import "./App.css";
 import RepositoryList from "@components/RepositoryList";
 
 const App: FC = () => (
-  <>
-    <RepositoryList />
-  </>
+  <RepositoryList />
 );
 
 export default App;
