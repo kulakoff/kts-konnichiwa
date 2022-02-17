@@ -4,7 +4,9 @@
     "paths": {
       "@shared/*": ["src/shared/*"],
       "@store/*": ["src/store/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/pages/*"]
     }
   }
 }
