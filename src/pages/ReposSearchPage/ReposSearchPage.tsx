@@ -13,6 +13,8 @@ import LoaderComponent from "@components/LoaderComponent";
 
 import styles from "./ReposSearchPage.module.css"
 import InputFieldComponent from "@components/InputFieldComponent";
+import ButtonComponent from "@components/ButtonComponent";
+import IconComponent from "@components/IconComponent";
 //
 const { Header, Content, Footer } = Layout;
 const { Search } = Input
@@ -47,6 +49,8 @@ const Icon = () => {
     <img src={myIcon} alt="icon_logo" />
   )
 }
+
+import vectorSearch from "@assets/img/vectorSearch.svg"
 
 const ReposSearchPage: FC = () => {
   const [input, setInput] = useState<string>("")
@@ -105,7 +109,9 @@ const ReposSearchPage: FC = () => {
             <div className="search-bar">
               <InputFieldComponent placeholder={"Введите название организации"} value={input} onChange={(e:any) => setInput(e.target.value)}></InputFieldComponent>
               <Button type="primary" shape="circle" icon={<Icon />} disabled={false} style={{ marginLeft: 5 }} onClick={() => console.log(input)} />
-
+<ButtonComponent disabled={true} onClick={()=>console.log(input)} >
+  <IconComponent icon={vectorSearch}></IconComponent>
+</ButtonComponent>
             </div>
             <Button type="primary" onClick={showDrawer}>
               test open drawer
