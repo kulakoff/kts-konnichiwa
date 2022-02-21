@@ -1,7 +1,7 @@
-import { Typography, Layout, Menu, Space, Input, Button, Tooltip, Drawer, List, Avatar } from "antd"
+import { Typography, Layout, Menu, Space, Input, Button, Tooltip, Drawer, List, Avatar, Image } from "antd"
 import { FC, useEffect, useState } from "react";
 import myIcon from "./../../assets/img/vectorSearch.svg"
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { MessageOutlined, LikeOutlined, StarOutlined, StarTwoTone } from '@ant-design/icons';
 import HeaderComponent from "@components/HeaderComponent";
 import FooterComponent from "@components/FooterComponent";
 //
@@ -15,6 +15,9 @@ import styles from "./ReposSearchPage.module.css"
 import InputFieldComponent from "@components/InputFieldComponent";
 import ButtonComponent from "@components/ButtonComponent";
 import IconComponent from "@components/IconComponent";
+
+import vectorSearch from "@assets/img/vectorSearch.svg"
+import starImage from "@assets/img/star.svg"
 //
 const { Header, Content, Footer } = Layout;
 const { Search } = Input
@@ -49,8 +52,6 @@ const Icon = () => {
     <img src={myIcon} alt="icon_logo" />
   )
 }
-
-import vectorSearch from "@assets/img/vectorSearch.svg"
 
 const ReposSearchPage: FC = () => {
   const [input, setInput] = useState<string>("")
@@ -101,65 +102,73 @@ const ReposSearchPage: FC = () => {
 
   return <Layout>
     <HeaderComponent />
-    
-      <Content style={{ padding: '0 50px' }}>
-        <div className="site-layout-content">
-          <div className="content-wrapper">
 
-            <div className="search-bar">
-              <InputFieldComponent placeholder={"Введите название организации"} value={input} onChange={(e:any) => setInput(e.target.value)}></InputFieldComponent>
-              <Button type="primary" shape="circle" icon={<Icon />} disabled={false} style={{ marginLeft: 5 }} onClick={() => console.log(input)} />
-<ButtonComponent disabled={true} onClick={()=>console.log(input)} >
-  <IconComponent icon={vectorSearch}></IconComponent>
-</ButtonComponent>
-            </div>
-            <Button type="primary" onClick={showDrawer}>
-              test open drawer
-            </Button>
+    <Content style={{ padding: '0 50px' }}>
+      <div className="site-layout-content">
+        <div className="content-wrapper">
 
-            {isLoading ?
-              <LoaderComponent /> :
-              <List
-                itemLayout="vertical"
-                pagination={{
-                  onChange: page => {
-                    console.log(page);
-                  },
-                  pageSize: 5,
-                }}
-                dataSource={items}
-                renderItem={(item: any) => (
-                  <List.Item
-                    key={item.id}
-                    actions={[
-                      <IconText icon={StarOutlined} text={item.stargazers_count} key="list-vertical-star-o" />,
-                      <Text type="secondary">Updated: {new Date(item.pushed_at).toDateString()}</Text>
-                    ]}
-                  >
-                    <List.Item.Meta
-                      avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                      title={item.name}
-                      description={item.owner.login}
-                    />
-
-                  </List.Item>
-                )}
-              />}
-
-            <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={visible}>
-              <p>Some contents 1 ...</p>
-              <p>Some contents 2 ...</p>
-              <p>Some contents 3 ...</p>
-            </Drawer>
-
-
+          <div className="search-bar">
+            <InputFieldComponent placeholder={"Введите название организации"} value={input} onChange={(e: any) => setInput(e.target.value)}></InputFieldComponent>
+            {/* <Button type="primary" shape="circle" icon={<Icon />} disabled={false} style={{ marginLeft: 5 }} onClick={() => console.log(input)} /> */}
+            <ButtonComponent disabled={false} onClick={() => console.log(input)} icon={<IconComponent icon={vectorSearch} />} >
+              button
+            </ButtonComponent>
           </div>
+          <Button type="primary" onClick={showDrawer}>
+            test open drawer
+          </Button>
+
+          {isLoading ?
+            <LoaderComponent /> :
+            <List
+              itemLayout="vertical"
+              pagination={{
+                onChange: page => {
+                  console.log(page);
+                },
+                pageSize: 5,
+              }}
+              dataSource={items}
+              renderItem={(item: any) => (
+                <List.Item
+                  onClick={() => showDrawer()}
+                  key={item.id}
+                  actions={[
+                    <IconText
+                      icon={StarOutlined}
+                      text={item.stargazers_count}
+                      key="list-vertical-star-o" />,
+                    <Text type="secondary">Updated: {new Date(item.pushed_at).toDateString()}</Text>
+                  ]}
+                >
+                  <List.Item.Meta
+                    avatar={<Avatar
+                      size={80}
+                      src={item.owner.avatar_url}
+                    />}
+                    title={item.name}
+                    description={item.owner.login}
+
+                  />
+
+                </List.Item>
+              )}
+            />}
+
+          <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={visible}>
+            <p>Some contents 1 ...</p>
+            <p>Some contents 2 ...</p>
+            <p>Some contents 3 ...</p>
+          </Drawer>
+
 
         </div>
-      </Content>
-          <FooterComponent />
 
-    
+      </div>
+    </Content>
+    <FooterComponent />
+
+
 
   </Layout>;
 }
