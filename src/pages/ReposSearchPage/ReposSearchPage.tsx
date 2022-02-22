@@ -18,6 +18,7 @@ import IconComponent from "@components/IconComponent";
 
 import vectorSearch from "@assets/img/vectorSearch.svg"
 import starImage from "@assets/img/star.svg"
+import RepoBranchesDrawer from "@components/RepoBranchesDrawer";
 //
 const { Header, Content, Footer } = Layout;
 const { Search } = Input
@@ -58,7 +59,8 @@ const ReposSearchPage: FC = () => {
   const [isLoading, setIsLoading] = useState<true | false>(false);
   const [error, setError] = useState<any>(null)
   const [items, setItems] = useState<any>([])
-
+  const [selesctRepo, setSelectRepo] = useState([])
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     console.log("useEffect run");
@@ -80,8 +82,7 @@ const ReposSearchPage: FC = () => {
   }, [input])
 
 
-  console.log(items)
-  const [visible, setVisible] = useState(false);
+
 
   const showDrawer = () => {
     setVisible(true);
@@ -89,6 +90,7 @@ const ReposSearchPage: FC = () => {
 
   const onClose = () => {
     setVisible(false);
+    setSelectRepo([])
   };
 
 
@@ -114,7 +116,7 @@ const ReposSearchPage: FC = () => {
               button
             </ButtonComponent>
           </div>
-          <Button type="primary" onClick={showDrawer}>
+          <Button type="primary" onClick={() => console.log(selesctRepo)}>
             test open drawer
           </Button>
 
@@ -131,7 +133,10 @@ const ReposSearchPage: FC = () => {
               dataSource={items}
               renderItem={(item: any) => (
                 <List.Item
-                  onClick={() => showDrawer()}
+                  onClick={() => {
+                    setSelectRepo(item);
+                    showDrawer()
+                  }}
                   key={item.id}
                   actions={[
                     <IconText
@@ -155,11 +160,13 @@ const ReposSearchPage: FC = () => {
               )}
             />}
 
-          <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={visible}>
+          <RepoBranchesDrawer onClose={onClose} visible={visible} item={selesctRepo} />
+
+          {/* <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={visible}>
             <p>Some contents 1 ...</p>
             <p>Some contents 2 ...</p>
             <p>Some contents 3 ...</p>
-          </Drawer>
+          </Drawer> */}
 
 
         </div>
