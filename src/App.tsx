@@ -1,9 +1,10 @@
+import ReposSearchPage from "@pages/ReposSearchPage";
+import TestElements from "@pages/TestElements";
 import { FC } from "react";
 import "./App.css";
-import RepositoryList from "@components/RepositoryList";
 
 const App: FC = () => (
-  <RepositoryList />
+  <ReposSearchPage></ReposSearchPage>
 );
 
 export default App;
