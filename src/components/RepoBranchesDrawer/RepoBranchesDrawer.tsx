@@ -1,27 +1,36 @@
-import { Drawer } from "antd";
+import { Drawer, List, Typography } from "antd";
 import { FC } from "react";
 
+const { Link } = Typography;
 interface RepoBranchesDrawerInt {
   visible: boolean;
   onClose: any;
-  item?: any;
+  drawData?: any;
 }
 
 const RepoBranchesDrawer: FC<RepoBranchesDrawerInt> = (
   { visible,
     onClose,
-    item }
+    drawData }
 ) => {
   return (
     <Drawer
-      title={item.name}
+      title="Branches list"
       placement="right"
       onClose={onClose}
       visible={visible}
     >
-      <p>Full name: {item.full_name}.</p>
-      <p>Language: {item.language} </p>
-      <p>Description: {item.description}</p>
+      <List
+        bordered
+        dataSource={drawData}
+        renderItem={(item: any) => (
+          <List.Item>
+            <Link href={item.commit.url} target="_blank">
+              {item.name}
+            </Link>
+          </List.Item>
+        )}
+      />
     </Drawer>
   );
 };

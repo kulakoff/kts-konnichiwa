@@ -1,88 +1,86 @@
-import { Typography, Layout, Menu, Space, Input, Button, Tooltip, Drawer, List, Avatar, Image } from "antd"
-import { FC, useEffect, useState } from "react";
+import { message, Typography, Layout, Space, Input, Button, Tooltip, Drawer, List, Avatar, Image } from "antd"
+import { FC, useState } from "react";
 import myIcon from "./../../assets/img/vectorSearch.svg"
-import { MessageOutlined, LikeOutlined, StarOutlined, StarTwoTone } from '@ant-design/icons';
+import { StarOutlined, StarTwoTone } from '@ant-design/icons';
 import HeaderComponent from "@components/HeaderComponent";
 import FooterComponent from "@components/FooterComponent";
 //
 import GitHubStore from "@store/GitHubStore";
-import { RepoItem } from "@store/GitHubStore/types";
+import { BranchesType, RepoItem } from "@store/GitHubStore/types";
 import { ApiResponse } from "@shared/store/ApiStore/types";
 import React from "react";
 import LoaderComponent from "@components/LoaderComponent";
-
-import styles from "./ReposSearchPage.module.css"
 import InputFieldComponent from "@components/InputFieldComponent";
 import ButtonComponent from "@components/ButtonComponent";
 import IconComponent from "@components/IconComponent";
 
 import vectorSearch from "@assets/img/vectorSearch.svg"
-import starImage from "@assets/img/star.svg"
+
 import RepoBranchesDrawer from "@components/RepoBranchesDrawer";
 //
 const { Header, Content, Footer } = Layout;
-const { Search } = Input
 const { Text } = Typography;
 const gitHubStore = new GitHubStore();
-const EXAMPLE_ORGANIZATION = "ktsstudio";
 
-const dataListItems = [
-  {
-    title: 'Ant Design Title 1',
-    url: "http://ya.ru"
-  },
-  {
-    title: 'Ant Design Title 2',
-    url: "https://yandex.ru/news/"
-  },
-  {
-    title: 'Ant Design Title 3',
-    url: "http://ya.ru"
-  },
-  {
-    title: 'Ant Design Title 4',
-    url: "http://ya.ru"
-  },
-];
-
-
-const onSearch = (value: any) => console.log(value);
-
-const Icon = () => {
-  return (
-    <img src={myIcon} alt="icon_logo" />
-  )
-}
 
 const ReposSearchPage: FC = () => {
   const [input, setInput] = useState<string>("")
   const [isLoading, setIsLoading] = useState<true | false>(false);
   const [error, setError] = useState<any>(null)
   const [items, setItems] = useState<any>([])
-  const [selesctRepo, setSelectRepo] = useState([])
+  const [selesctRepo, setSelectRepo] = useState<string>("")
+  const [branhesList, setBranhesList] = useState<any>([])
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    console.log("useEffect run");
+
+  const info = (messageValue: string) => {
+    message.info(messageValue);
+  };
+  const warning = (messageValue: string) => {
+    message.warning(messageValue);
+  };
+
+  const searchOrg = () => {
+    if (input !== "") {
+      setIsLoading(true)
+      gitHubStore
+        .getOrganizationReposList({
+          organizationName: input,
+        })
+        .then((result: ApiResponse<RepoItem[], any>) => {
+          console.log(result)
+          if (result.success) {
+            setItems(result.data)
+            setIsLoading(false)
+          }
+          else if (!result.success) {
+            setIsLoading(false)
+            warning(`По Вашему запросу "${input}" совпадения не найдены.`)
+          }
+        });
+    }
+    else {
+      info("Укажите название организации")
+    }
+  }
+
+  const getBranches = (item: string) => {
+    setSelectRepo(item)
+    console.log(selesctRepo)
     setIsLoading(true)
     gitHubStore
-      .getOrganizationReposList({
-        organizationName: EXAMPLE_ORGANIZATION,
+      .getBranchesList({
+        owner: input,
+        repo: item
       })
-      .then((result: ApiResponse<RepoItem[], any>) => {
+      .then((result: ApiResponse<BranchesType[], any>) => {
         if (result.success) {
-          setItems(result.data)
+          setBranhesList(result.data)
           setIsLoading(false)
+          showDrawer()
         }
       });
-
-  }, [])
-  useEffect(() => {
-    console.log(input)
-  }, [input])
-
-
-
+  }
 
   const showDrawer = () => {
     setVisible(true);
@@ -90,9 +88,8 @@ const ReposSearchPage: FC = () => {
 
   const onClose = () => {
     setVisible(false);
-    setSelectRepo([])
+    setSelectRepo("")
   };
-
 
   const IconText: FC<any> = ({ icon, text }) => (
     <Space>
@@ -110,20 +107,17 @@ const ReposSearchPage: FC = () => {
         <div className="content-wrapper">
 
           <div className="search-bar">
-            <InputFieldComponent placeholder={"Введите название организации"} value={input} onChange={(e: any) => setInput(e.target.value)}></InputFieldComponent>
-            {/* <Button type="primary" shape="circle" icon={<Icon />} disabled={false} style={{ marginLeft: 5 }} onClick={() => console.log(input)} /> */}
-            <ButtonComponent disabled={false} onClick={() => console.log(input)} icon={<IconComponent icon={vectorSearch} />} >
+            <InputFieldComponent placeholder={"Введите название организации"} value={input} onChange={(e: any) => setInput(e.target.value)} onPressEnter={() => searchOrg()}></InputFieldComponent>
+            <ButtonComponent disabled={isLoading} onClick={() => searchOrg()} icon={<IconComponent icon={vectorSearch} />} >
               button
             </ButtonComponent>
           </div>
-          <Button type="primary" onClick={() => console.log(selesctRepo)}>
-            test open drawer
-          </Button>
 
           {isLoading ?
             <LoaderComponent /> :
             <List
               itemLayout="vertical"
+
               pagination={{
                 onChange: page => {
                   console.log(page);
@@ -133,9 +127,8 @@ const ReposSearchPage: FC = () => {
               dataSource={items}
               renderItem={(item: any) => (
                 <List.Item
-                  onClick={() => {
-                    setSelectRepo(item);
-                    showDrawer()
+                  onClick={async (e) => {
+                    getBranches(item.name)
                   }}
                   key={item.id}
                   actions={[
@@ -153,20 +146,12 @@ const ReposSearchPage: FC = () => {
                     />}
                     title={item.name}
                     description={item.owner.login}
-
                   />
-
                 </List.Item>
               )}
             />}
 
-          <RepoBranchesDrawer onClose={onClose} visible={visible} item={selesctRepo} />
-
-          {/* <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={visible}>
-            <p>Some contents 1 ...</p>
-            <p>Some contents 2 ...</p>
-            <p>Some contents 3 ...</p>
-          </Drawer> */}
+          <RepoBranchesDrawer onClose={onClose} visible={visible} drawData={branhesList} />
 
 
         </div>

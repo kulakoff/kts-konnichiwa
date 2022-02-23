@@ -11,6 +11,11 @@ import { ApiResponse } from "@shared/store/ApiStore/types";
 export type GetOrganizationReposListParams = {
   organizationName: string;
 };
+
+export type GetRepoBranchesParams = {
+  owner: string;
+  repo: string;
+};
 // export type ApiResp<RepoItem> = {};
 export type RepoItem = {
   id: number;
@@ -24,8 +29,27 @@ export type RepoItem = {
   stargazers_count: number;
 };
 
+export type BranchesType = {
+  name: string;
+  commit: {
+    sha: string;
+    url: string;
+  };
+  protected: true;
+  protection: {
+    required_status_checks: {
+      enforcement_level: string;
+      contexts: [];
+    };
+  };
+  protection_url: string;
+};
+
 export interface IGitHubStore {
   getOrganizationReposList(
     params: GetOrganizationReposListParams
   ): Promise<ApiResponse<RepoItem[], any>>;
+  getBranchesList(
+    params: GetRepoBranchesParams
+  ): Promise<ApiResponse<BranchesType[], any>>;
 }
