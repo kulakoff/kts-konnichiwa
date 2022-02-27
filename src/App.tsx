@@ -4,7 +4,7 @@ import { FC } from "react";
 import "./App.css";
 
 const App: FC = () => (
-  <ReposSearchPage></ReposSearchPage>
+  <TestElements/>
 );
 
 export default App;
