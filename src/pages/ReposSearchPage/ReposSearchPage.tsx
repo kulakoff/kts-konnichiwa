@@ -17,10 +17,14 @@ import IconComponent from "@components/IconComponent";
 import vectorSearch from "@assets/img/vectorSearch.svg"
 
 import RepoBranchesDrawer from "@components/RepoBranchesDrawer";
+import { Routes } from "react-router-dom";
 //
 const { Header, Content, Footer } = Layout;
 const { Text } = Typography;
 const gitHubStore = new GitHubStore();
+
+
+
 
 
 const ReposSearchPage: FC = () => {
@@ -99,70 +103,71 @@ const ReposSearchPage: FC = () => {
   );
 
 
-  return <Layout>
-    <HeaderComponent />
+  return (
+      <Layout>
+        <HeaderComponent />
+        <Content style={{ padding: '0 50px' }}>
+          <div className="site-layout-content">
+            <div className="content-wrapper">
 
-    <Content style={{ padding: '0 50px' }}>
-      <div className="site-layout-content">
-        <div className="content-wrapper">
+              <div className="search-bar">
+                <InputFieldComponent placeholder={"Введите название организации"} value={input} onChange={(e: any) => setInput(e.target.value)} onPressEnter={() => searchOrg()}></InputFieldComponent>
+                <ButtonComponent disabled={isLoading} onClick={() => searchOrg()} icon={<IconComponent icon={vectorSearch} />} >
+                  button
+                </ButtonComponent>
+              </div>
 
-          <div className="search-bar">
-            <InputFieldComponent placeholder={"Введите название организации"} value={input} onChange={(e: any) => setInput(e.target.value)} onPressEnter={() => searchOrg()}></InputFieldComponent>
-            <ButtonComponent disabled={isLoading} onClick={() => searchOrg()} icon={<IconComponent icon={vectorSearch} />} >
-              button
-            </ButtonComponent>
-          </div>
+              {isLoading ?
+                <LoaderComponent /> :
+                <List
+                  itemLayout="vertical"
 
-          {isLoading ?
-            <LoaderComponent /> :
-            <List
-              itemLayout="vertical"
-
-              pagination={{
-                onChange: page => {
-                  console.log(page);
-                },
-                pageSize: 5,
-              }}
-              dataSource={items}
-              renderItem={(item: any) => (
-                <List.Item
-                  onClick={async (e) => {
-                    getBranches(item.name)
+                  pagination={{
+                    onChange: page => {
+                      console.log(page);
+                    },
+                    pageSize: 5,
                   }}
-                  key={item.id}
-                  actions={[
-                    <IconText
-                      icon={StarOutlined}
-                      text={item.stargazers_count}
-                      key="list-vertical-star-o" />,
-                    <Text type="secondary">Updated: {new Date(item.pushed_at).toDateString()}</Text>
-                  ]}
-                >
-                  <List.Item.Meta
-                    avatar={<Avatar
-                      size={80}
-                      src={item.owner.avatar_url}
-                    />}
-                    title={item.name}
-                    description={item.owner.login}
-                  />
-                </List.Item>
-              )}
-            />}
+                  dataSource={items}
+                  renderItem={(item: any) => (
+                    <List.Item
+                      onClick={async (e) => {
+                        getBranches(item.name)
+                      }}
+                      key={item.id}
+                      actions={[
+                        <IconText
+                          icon={StarOutlined}
+                          text={item.stargazers_count}
+                          key="list-vertical-star-o" />,
+                        <Text type="secondary">Updated: {new Date(item.pushed_at).toDateString()}</Text>
+                      ]}
+                    >
+                      <List.Item.Meta
+                        avatar={<Avatar
+                          size={80}
+                          src={item.owner.avatar_url}
+                        />}
+                        title={item.name}
+                        description={item.owner.login}
+                      />
+                    </List.Item>
+                  )}
+                />}
 
-          <RepoBranchesDrawer onClose={onClose} visible={visible} drawData={branhesList} />
-
-
-        </div>
-
-      </div>
-    </Content>
-    <FooterComponent />
-
+              <RepoBranchesDrawer onClose={onClose} visible={visible} drawData={branhesList} />
 
 
-  </Layout>;
+            </div>
+
+          </div>
+        </Content>
+        <FooterComponent />
+      </Layout>
+
+  )
+
+
 }
 
 export default ReposSearchPage
