@@ -6,7 +6,8 @@
       "@store/*": ["src/store/*"],
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@constants/*":["src/constants*"]
     }
   }
 }
