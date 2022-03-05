@@ -1,6 +1,6 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import "./Layout.module.scss";
 import { Layout, Menu, Breadcrumb } from "antd";
 import {
@@ -13,6 +13,8 @@ import {
 } from "@ant-design/icons";
 import FooterComponent from "@components/FooterComponent";
 import { Outlet, NavLink } from "react-router-dom";
+
+import * as ROUTES from "./../constants/routes"
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -35,10 +37,10 @@ class LayoutScreen extends React.Component {
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<DribbbleOutlined  />}>
-              <NavLink to="/">Main Page</NavLink>
+              <NavLink to={ROUTES.HOME}>Main Page</NavLink>
             </Menu.Item>
             <Menu.Item key="2" icon={<GithubOutlined />}>
-              <NavLink to="/repos">Repository</NavLink>
+              <NavLink to={ROUTES.REPOS}>Repository</NavLink>
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="Users">
               <Menu.Item key="3">Tom</Menu.Item>
@@ -53,7 +55,7 @@ class LayoutScreen extends React.Component {
               Files
             </Menu.Item>
             <Menu.Item key="10" icon={<InfoCircleOutlined />}>
-              <NavLink to="/about">About</NavLink>
+              <NavLink to={ROUTES.ABOUT}>About</NavLink>
             </Menu.Item>
           </Menu>
         </Sider>
