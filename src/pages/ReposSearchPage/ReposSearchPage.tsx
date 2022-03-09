@@ -12,9 +12,9 @@ import {
   Image,
 } from "antd";
 import { FC, useState } from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
-import myIcon from "./../../assets/img/vectorSearch.svg";
+// import myIcon from "./../../assets/img/vectorSearch.svg";
 import { StarOutlined, StarTwoTone } from "@ant-design/icons";
 import HeaderComponent from "@components/HeaderComponent";
 import FooterComponent from "@components/FooterComponent";
