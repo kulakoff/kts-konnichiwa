@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@config/*":["src/config/*"],
       "@shared/*": ["src/shared/*"],
       "@store/*": ["src/store/*"],
       "@components/*": ["src/components/*"],
